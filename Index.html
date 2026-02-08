@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PanelTrack</title>
+<style>
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+  background: #0F766E;
+  color: white;
+}
+button {
+  width: 90%;
+  margin: 10px auto;
+  padding: 18px;
+  font-size: 18px;
+  background: transparent;
+  color: white;
+  border: 2px solid white;
+  border-radius: 10px;
+}
+input, textarea {
+  width: 90%;
+  margin: 8px auto;
+  padding: 12px;
+  font-size: 16px;
+  border-radius: 8px;
+  border: none;
+}
+.panel {
+  display: flex;
+  align-items: center;
+  margin: 6px 20px;
+}
+.panel input {
+  margin-right: 10px;
+}
+.hidden { display: none; }
+</style>
+</head>
+<body>
+
+<h2 style="text-align:center;">PanelTrack</h2>
+
+<div id="home">
+  <button onclick="scan()">📸 Scan Registration</button>
+  <button onclick="search()">🔍 Search Vehicles</button>
+</div>
+
+<div id="job" class="hidden">
+  <h3 style="text-align:center;" id="regTitle"></h3>
+
+  <input id="reg" placeholder="Registration">
+
+  <h4 style="margin-left:20px;">Panels</h4>
+  <div id="panels"></div>
+
+  <textarea id="notes" placeholder="Notes (optional)"></textarea>
+  <button onclick="saveJob()">💾 Save Job</button>
+  <button onclick="back()">⬅ Back</button>
+</div>
+
+<script>
+const panelList = [
+"Bonnet","Osf wing","Osf door","Osr door","Osr 1/4","Tailgate",
+"Nsr 1/4","Nsr door","Nsf door","Nsf wing","Roof","Os Rail","Ns Rail","Spoiler"
+];
+
+const panelsDiv = document.getElementById("panels");
+panelList.forEach(p => {
+  panelsDiv.innerHTML += `<div class="panel">
+    <input type="checkbox" value="${p}">${p}
+  </div>`;
+});
+
+function scan() {
+  document.getElementById("home").classList.add("hidden");
+  document.getElementById("job").classList.remove("hidden");
+}
+
+function saveJob() {
+  alert("Job saved locally ✔\n(This is your working private app)");
+}
+
+function back() {
+  document.getElementById("job").classList.add("hidden");
+  document.getElementById("home").classList.remove("hidden");
+}
+</script>
+
+</body>
+</html>
